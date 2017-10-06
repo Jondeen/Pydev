@@ -92,6 +92,12 @@ public class DjangoNewProjectPage extends NewProjectNameAndLocationWizardPage {
             setErrorMessage("When creating a Django project it cannot be named Django because of conflicts with the default Django install.");
             return false;
         }
+        
+        if (!projectName.trim().toLowerCase().matches("[a-z_][a-z0-9_]*")) { // Violates django-admin naming rules
+            setErrorMessage("Django project names may only start with a letter or underscore, and may only contain letters, underscores and numbers.");
+            return false;
+        }
+        
         return true;
     }
 
